@@ -33,7 +33,7 @@ Running the Sumo Notebooks Docker Container
 3. Open the Zeppelin UI and find some sample notebooks under the 'Notebook' drop down menu.
 ``http://localhost:8088``
 
-.. note:: It is a prerequisite to have a working docker installed.
+.. note:: It is a prerequisite to have a working `docker <https://docs.docker.com/v17.09/engine/installation/>`_ installed.
 
 This is it, happy coding!
 
@@ -76,6 +76,79 @@ Data Science Workflow
 =====================
 
 The foundational datastructure for Sumo notebooks is a data frame. A typical data science workflow manipulates data frames in many ways. For instance, data frames might be transformed for feature generation and statistical analysis, or joined with another dataset for enrichment. Therefore, a Sumo notebook returns query results in a Spark dataframe. This enables users to tap into Spark's development universe, or -- using the ``toPandas`` method -- switch over to a python-native approach for data analytics.
+
+Data Exploration using Spark SQL
+--------------------------------
+
+This workflow focuses on loading log data from Sumo and then performing data exploration using Spark SQL.
+
+
+.. image:: images/1_run-query.png
+    :width: 600px
+    :align: center
+    :alt: Enter query in paragraph
+
+
+First thing is to instruct Zeppelin to use the Sumo interpreter by entering `%spark.sumo` in the forst line of the paragraph. This annotation indicates that the paragraph is routed to the Sumo interpreter running in the backend. This interpreter checks the query, connects to Sumo using access id and access key and retrieves the data. The data is represented as a `Spark DataFrame <https://spark.apache.org/docs/2.1.0/sql-programming-guide.html>`_ and can be used as such through the name displayed in the DataFrame field. In this example this is ``myquery768``. 
+
+.. note:: In fact it uses a customized version of the `sumo-java-client <https://github.com/SumoLogic/sumo-java-client>`_, therefore it has the same restrictions.
+
+A DataFrame bound to this name exists in the scope of the Spark Scala shell, this is can be manipulated via the Spark Scala API. When sharing the reference through the Zeppelin context, it can also be used in PySpark (see next tutorial). The ``DataFrame`` as also registered as a temporary table in Spark SQL.
+
+.. image:: images/2_aggregate.png
+    :width: 600px
+    :align: center
+    :alt: Explore the data using Spark SQL
+	
+Starting the paragraph with `%spark.sql` designates the Spark SQL interpreter and SQL queries can be entered to explore the data. This example produces counts from raw data. Counting is a common pre-processing task for subsequent statistical learning task.
+	
+.. image:: images/3_string-matching.png
+    :width: 600px
+    :align: center
+    :alt: String match operations using Spark SQL
+
+Another common operation on logs is string matching. Spark SQL's `SELECT <https://docs.databricks.com/spark/latest/spark-sql/language-manual/select.html>`_ provides a set of operations to filter and aggregate data.
+                         
+
+
+Clustering Example
+------------------
+
+.. image:: images/9_metrics.png
+    :width: 600px
+    :align: center
+    :alt: Query for metrics
+
+
+.. image:: images/4_share.png
+    :width: 600px
+    :align: center
+    :alt: Share DataFrame via Zeppelin context
+
+
+.. image:: images/5_plot.png
+    :width: 600px
+    :align: center
+    :alt: Plot using matplotlib
+
+
+.. image:: images/6_scatter.png
+    :width: 600px
+    :align: center
+    :alt: Scatter plot via matplotlib
+
+.. image:: images/7_cluster.png
+    :width: 600px
+    :align: center
+    :alt: Run DBScan clustering via sklearn
+
+.. image:: images/8_cluster-result.png
+    :width: 600px
+    :align: center
+    :alt: Show clustered result
+
+
+
 
 Troubleshooting
 ===============
