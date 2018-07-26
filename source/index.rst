@@ -19,6 +19,9 @@ Getting Started
 
 Sumo Notebooks are organized as a docker container that assembles all dependencies in a single container. This simplifies installing and updating. A Sumo Notebooks container gets access to an organzation's Sumo data store via Sumo's REST API. For that purpose, we require you to create an access key for Sumo as described in `this guide <https://help.sumologic.com/Manage/Security/Access-Keys>`_. After creating access credentials, please follow these steps to install and run the Sumo Notebooks container.
 
+Running the Sumo Notebooks Docker Container
+-------------------------------------------
+
 0. Open a shell or terminal on your computer
 
 1. Load the SumoLab docker container on your computer:
@@ -31,6 +34,43 @@ Sumo Notebooks are organized as a docker container that assembles all dependenci
 ``http://localhost:8088``
 
 .. note:: It is a prerequisite to have a working docker installed.
+
+This is it, happy coding!
+
+
+Setting the Access Keys
+-----------------------
+
+Sharing access id/key with the Sumo Notebooks container can be done using two methods:
+
+* Submitting ``ZEPPELIN_SPARK_SUMO_ACCESSID`` and ``ZEPPELIN_SPARK_SUMO_ACCESSKEY`` environment variables to the container as shown in the previous section
+* Setting or changing the access id/key pair within the Zeppelin web UI as shown below
+
+
+Step 1
+^^^^^^
+
+Click on the username in the right top corner of the Zeppelin web UI. Scroll down or enter ``spark`` in the search bar to get to the Spark configuration page.
+
+.. figure:: images/sumonotebooks_setting-the-accesskey-1.png
+    :width: 600px
+    :align: center
+    :alt: Open the Spark interpreter configuration page
+
+    Open the Spark interpreter configuration page
+
+Step 2
+^^^^^^
+
+On the Spark configuration page click the ``edit`` button and then enter access id, access key, and http endpoint in the according text fields. An overview of the Sumo endpoints for the different deployments is listed on `this page <https://help.sumologic.com/APIs/General-API-Information/Sumo-Logic-Endpoints-and-Firewall-Security>`_. Finally, save the configuration and the interprester will restart with the new configuration.
+
+.. figure:: images/sumonotebooks_setting-the-accesskey-2.png
+    :width: 600px
+    :align: center
+    :alt: Enter the access id/key pair and save
+
+    Enter the access id/key pair and save
+
 
 Data Science Workflow
 =====================
@@ -81,7 +121,7 @@ The SparkSumoMemoryCache object is a key value store that holds the context of t
 +---------------------------+----------------------------+--------------------------------------------------------------------------+
 
 Code example
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 .. code-block:: scala
 
