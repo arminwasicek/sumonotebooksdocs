@@ -40,6 +40,9 @@ The foundational datastructure for Sumo notebooks is a data frame. A typical dat
 Troubleshooting
 ===============
 
+Common Errors
+-------------
+
 **No data or exception:**
 
 * Make sure to have the right access credentials in place
@@ -47,6 +50,35 @@ Troubleshooting
 **TTransportException or timeout**
 
 * Restart the interpreter: Use black, top right gear for pulling up interpreter menu, then push restart icon on the left of the blue bar listing the interpreter group for spark, finally save on the bottom.
+
+
+Debugging
+---------
+
+The SparkSumoMemoryCache object is a key value store that holds the context of the most recent operations. It can be used to inquire on exceptions and results that are retrieve behind the scenes.
+
+
++---------------------------+----------------------------+--------------------------------------------------------------------------+
+| Key                       | Type                       | Description                                                              |
++===========================+============================+==========================================================================+
+| lastDataFrame             | DataFrame                  | Holds a reference to the last data frame that has been created           |
++---------------------------+----------------------------+--------------------------------------------------------------------------+
+| lastLogQueryException     | Exception                  | References the last exception (if any) that the log backend threw        |
++---------------------------+----------------------------+--------------------------------------------------------------------------+
+| lastMetricsQueryException | Exception                  | References the last exception (if any) that the log backend threw        |
++---------------------------+----------------------------+--------------------------------------------------------------------------+
+| lastMetricsDimensions     | HashMap[String, String]    | Dictionary to resolve the metrics column header to the actual dimensions |
++---------------------------+----------------------------+--------------------------------------------------------------------------+
+| lastQueryJob              | JobId                      | References the last job id returned from the search api                  |
++---------------------------+----------------------------+--------------------------------------------------------------------------+
+| lastTriplet               | QueryTriplet               | Last processed query                                                     |
++---------------------------+----------------------------+--------------------------------------------------------------------------+
+| metricsClient             | SumoMetricsClient          | Client used to retrieve metrics from Sumo                                |
++---------------------------+----------------------------+--------------------------------------------------------------------------+
+| sumoClient                | SumoClient                 | Client used to retrieve logs from Sumo                                   |
++---------------------------+----------------------------+--------------------------------------------------------------------------+
+| sparkSession              | SparkSession               | Spark session that is used to ingest the data                            |
++---------------------------+----------------------------+--------------------------------------------------------------------------+
 
 
 Other Documentation
