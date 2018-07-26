@@ -80,6 +80,19 @@ The SparkSumoMemoryCache object is a key value store that holds the context of t
 | sparkSession              | SparkSession               | Spark session that is used to ingest the data                            |
 +---------------------------+----------------------------+--------------------------------------------------------------------------+
 
+Code example
+~~~~~~~~~~~~
+
+.. code-block:: scala
+
+   val spark = SparkSumoMemoryCache.get("sparkSession").get.asInstanceOf[SparkSession]
+
+
+Limitations
+-----------
+
+Current limits of the REST API are documented `here <https://help.sumologic.com/APIs/Search-Job-API/About-the-Search-Job-API#Rate_limiting>`_.
+
 
 Other Documentation
 ======================
