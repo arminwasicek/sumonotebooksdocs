@@ -110,37 +110,45 @@ Starting the paragraph with `%spark.sql` designates the Spark SQL interpreter an
 Another common operation on logs is string matching. Spark SQL's `SELECT <https://docs.databricks.com/spark/latest/spark-sql/language-manual/select.html>`_ provides a set of operations to filter and aggregate data.
                          
 
-
 Clustering Example
 ------------------
+
+This example is about leveraing the python interpreter to perform a basic clustering operation on metrics data. As usual, `%spark.sumo` leads in a Sumo query. This time a metrics query is submitted. Metrics queries can be specified by selecting _Metrics_ via the drop down menu.
 
 .. image:: images/9_metrics.png
     :width: 600px
     :align: center
     :alt: Query for metrics
 
+Similarly to the log queries, the result is a `DataFrame`. As this `DataFrame` lives in the Spark Scala world we need to share it via the `Zeppelin context <https://zeppelin.apache.org/docs/0.8.0/usage/other_features/zeppelin_context.html>`_ with the python interpreter
 
 .. image:: images/4_share.png
     :width: 600px
     :align: center
     :alt: Share DataFrame via Zeppelin context
 
+After retrieving the `DataFrame` in the python interpreter and loading it as a pandas data frame, the powerful world python machine learning frameworks opens up! First, some visual exploration using matplotlib reveals is done. 
 
 .. image:: images/5_plot.png
     :width: 600px
     :align: center
     :alt: Plot using matplotlib
 
+Next, each time series is featurized to simple (mean, std) pairs and plotted as a scatter plot. Visual inspection reveals that there might be some clusters!
 
 .. image:: images/6_scatter.png
     :width: 600px
     :align: center
     :alt: Scatter plot via matplotlib
 
+Using this intuition, a first try is to run the dbscan algorithm from the sklearn package.
+
 .. image:: images/7_cluster.png
     :width: 600px
     :align: center
     :alt: Run DBScan clustering via sklearn
+    
+And there we are, yes there are a couple of clusters in the that particular metric.
 
 .. image:: images/8_cluster-result.png
     :width: 600px
