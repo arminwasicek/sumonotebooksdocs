@@ -37,6 +37,24 @@ Running the Sumo Notebooks Docker Container
 
 This is it, happy coding!
 
+Docker Container Environment Variables
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There is a set of environment variables for Sumo Notebooks that can be set when starting the docker container. The ``docker push`` command provides the ``-e`` switch to define these variables.
+
+
++-------------------------------+----------------------------------------------------------------------------+
+| Variable                      | Description                                                                |						
++===============================+============================================================================+
+| ZEPPELIN_SPARK_SUMO_ACCESSID  | Access Id token from Sumo, usually a base64url encoded string.             |
++-------------------------------+----------------------------------------------------------------------------+
+| ZEPPELIN_SPARK_SUMO_ACCESSKEY | Access key token from Sumo, usually a base64url encoded string.            |
++-------------------------------+----------------------------------------------------------------------------+
+| ZEPPELIN_SPARK_SUMO_ENDPOINT  | A https URL denoting the Sumo deployment to connect to.                    |
++-------------------------------+----------------------------------------------------------------------------+
+| ZEPPELIN_SPARK_WEBUI          | This variable controls where the "Spark Job" link in a paragraph points.   |
++-------------------------------+----------------------------------------------------------------------------+
+
 
 Setting the Access Keys
 -----------------------
