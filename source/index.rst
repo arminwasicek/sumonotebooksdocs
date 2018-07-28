@@ -28,7 +28,7 @@ Running the Sumo Notebooks Docker Container
 ``docker pull sumologic/sumonotebooks:latest``
 
 2. Start the container. API access id and access key can be either submitted via the command line or entered via the Spark interpreter configuration menu in Zeppelin.
-``docker run -d -it -p 8088:8080 -e ZEPPELIN_SPARK_SUMO_ACCESSID='XXX' -e ZEPPELIN_SPARK_SUMO_ACCESSKEY='XXX' sumologic/sumonotebooks:latest``
+``docker run -d -it -p 8088:8080 -e ZEPPELIN_SPARK_SUMO_ACCESSID='XXX' -e ZEPPELIN_SPARK_SUMO_ACCESSKEY='XXX' sumologic/notebooks:latest``
 
 3. Open the Zeppelin UI and find some sample notebooks under the 'Notebook' drop down menu.
 ``http://localhost:8088``
