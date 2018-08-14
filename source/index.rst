@@ -228,7 +228,7 @@ Code example
 
 
 Limitations
------------
+===========
 
 Current limits of the REST API are documented `here <https://help.sumologic.com/APIs/Search-Job-API/About-the-Search-Job-API#Rate_limiting>`_.
 
