@@ -25,7 +25,7 @@ Running the Sumo Notebooks Docker Container
 0. Open a shell or terminal on your computer
 
 1. Load the SumoLab docker container on your computer:
-``docker pull sumologic/sumonotebooks:latest``
+``docker pull sumologic/notebooks:latest``
 
 2. Start the container. API access id and access key can be either submitted via the command line or entered via the Spark interpreter configuration menu in Zeppelin.
 ``docker run -d -it -p 8088:8080 -e ZEPPELIN_SPARK_SUMO_ACCESSID='XXX' -e ZEPPELIN_SPARK_SUMO_ACCESSKEY='XXX' sumologic/notebooks:latest``
