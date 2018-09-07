@@ -37,7 +37,7 @@ Running the Sumo Notebooks Docker Container
 
 
 +-------------------------+--------+-------------------------+
-| Application             | Ports  | Link
+| Application             | Ports  | Link                    |
 +=========================+========+=========================+
 | Zeppelin                | 8088   | http://localhost:8088   |
 +-------------------------+--------+-------------------------+
@@ -58,9 +58,9 @@ There is a set of environment variables for Sumo Notebooks that can be set when 
 
 
 +-------------------------------+------------------------------------------------------------------------------------------------+
-| Variable                      | Description                                                                             |						
+| Variable                      | Description                                                                                    |
 +===============================+================================================================================================+
-| SUMO_ACCESS_ID 				| Access Id token from Sumo, usually a base64url encoded string.                                 |
+| SUMO_ACCESS_ID                | Access Id token from Sumo, usually a base64url encoded string.                                 |
 +-------------------------------+------------------------------------------------------------------------------------------------+
 | SUMO_ACCESS_KEY               | Access key token from Sumo, usually a base64url encoded string.                                |
 +-------------------------------+------------------------------------------------------------------------------------------------+
