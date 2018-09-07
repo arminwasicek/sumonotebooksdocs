@@ -27,13 +27,23 @@ Running the Sumo Notebooks Docker Container
 1. Load the SumoLab docker container on your computer:
 ``docker pull sumologic/notebooks:latest``
 
-2. Start the container. API access id and access key can be either submitted via the command line or entered via the Spark interpreter configuration menu in Zeppelin.
-``docker run -d -it -p 8088:8080 -e ZEPPELIN_SPARK_SUMO_ACCESSID='XXX' -e ZEPPELIN_SPARK_SUMO_ACCESSKEY='XXX' sumologic/notebooks:latest``
+.. note:: It is a prerequisite to have a working `docker <https://docs.docker.com/v17.09/engine/installation/>`_ installed.
 
-3. Open the Zeppelin UI and find some sample notebooks under the 'Notebook' drop down menu.
+2. Start the container. API access id and access key have to be submitted via command line to work with the Jupyter notebook but can be either submitted via the command line or entered via the Spark interpreter configuration menu in Zeppelin.
+
+``docker run -d -it -p 4000:8888 -e SUMO_ACCESS_ID='XXX' -e SUMO_ACCESS_KEY='XXX' -e SUMO_ENDPOINT='XXX' sumologic/notebooks:latest``
+
+3. Open the Zeppelin UI and find some sample notebooks under the 'Notebook' drop down menu or see the 'Demo.ipynb' on opening Jupyter on the browser.
+
+Zeppelin
+^^^^^^^^^
 ``http://localhost:8088``
 
-.. note:: It is a prerequisite to have a working `docker <https://docs.docker.com/v17.09/engine/installation/>`_ installed.
+Jupyter
+^^^^^^^
+``http://localhost:4000``
+
+
 
 This is it, happy coding!
 
@@ -43,17 +53,17 @@ Docker Container Environment Variables
 There is a set of environment variables for Sumo Notebooks that can be set when starting the docker container. The ``docker push`` command provides the ``-e`` switch to define these variables.
 
 
-+-------------------------------+----------------------------------------------------------------------------+
-| Variable                      | Description                                                                |						
-+===============================+============================================================================+
-| ZEPPELIN_SPARK_SUMO_ACCESSID  | Access Id token from Sumo, usually a base64url encoded string.             |
-+-------------------------------+----------------------------------------------------------------------------+
-| ZEPPELIN_SPARK_SUMO_ACCESSKEY | Access key token from Sumo, usually a base64url encoded string.            |
-+-------------------------------+----------------------------------------------------------------------------+
-| ZEPPELIN_SPARK_SUMO_ENDPOINT  | A https URL denoting the Sumo deployment to connect to.                    |
-+-------------------------------+----------------------------------------------------------------------------+
-| ZEPPELIN_SPARK_WEBUI          | This variable controls where the "Spark Job" link in a paragraph points.   |
-+-------------------------------+----------------------------------------------------------------------------+
++-------------------------------+------------------------------------------------------------------------------------------------+
+| Variable                      | Description                                                                             |						
++===============================+================================================================================================+
+| SUMO_ACCESS_ID 				| Access Id token from Sumo, usually a base64url encoded string.                                 |
++-------------------------------+------------------------------------------------------------------------------------------------+
+| SUMO_ACCESS_KEY               | Access key token from Sumo, usually a base64url encoded string.                                |
++-------------------------------+------------------------------------------------------------------------------------------------+
+| SUMO_ENDPOINT                 | A https URL denoting the Sumo deployment to connect to. (Needed by Zeppelin)                   |
++-------------------------------+------------------------------------------------------------------------------------------------+
+| ZEPPELIN_SPARK_WEBUI          | This variable controls where the "Spark Job" link in a paragraph points. (Needed by Zeppelin)  |
++-------------------------------+------------------------------------------------------------------------------------------------+
 
 
 Setting the Access Keys
@@ -61,9 +71,8 @@ Setting the Access Keys
 
 Sharing access id/key with the Sumo Notebooks container can be done using two methods:
 
-* Submitting ``ZEPPELIN_SPARK_SUMO_ACCESSID`` and ``ZEPPELIN_SPARK_SUMO_ACCESSKEY`` environment variables to the container as shown in the previous section
-* Setting or changing the access id/key pair within the Zeppelin web UI as shown below
-
+* Submitting ``SUMO_ACCESS_ID`` and ``SUMO_ACCESS_KEY`` environment variables to the container as shown in the previous section
+* Setting or changing the access id/key pair within the Zeppelin web UI as shown below. This is not available in Jupyter.
 
 Step 1
 ^^^^^^
@@ -90,10 +99,10 @@ On the Spark configuration page click the ``edit`` button and then enter access 
     Enter the access id/key pair and save
 
 
-Data Science Workflow
-=====================
+Zeppelin Data Science Workflow
+==============================
 
-The foundational datastructure for Sumo notebooks is a data frame. A typical data science workflow manipulates data frames in many ways. For instance, data frames might be transformed for feature generation and statistical analysis, or joined with another dataset for enrichment. Therefore, a Sumo notebook returns query results in a Spark dataframe. This enables users to tap into Spark's development universe, or -- using the ``toPandas`` method -- switch over to a python-native approach for data analytics.
+The foundational data structure for Sumo notebooks is a data frame. A typical data science workflow manipulates data frames in many ways. For instance, data frames might be transformed for feature generation and statistical analysis, or joined with another dataset for enrichment. Therefore, a Sumo notebook returns query results in a Spark dataframe. This enables users to tap into Spark's development universe, or -- using the ``toPandas`` method -- switch over to a python-native approach for data analytics.
 
 Data Exploration using Spark SQL
 --------------------------------
@@ -107,7 +116,7 @@ This workflow focuses on loading log data from Sumo and then performing data exp
     :alt: Enter query in paragraph
 
 
-First thing is to instruct Zeppelin to use the Sumo interpreter by entering `%spark.sumo` in the forst line of the paragraph. This annotation indicates that the paragraph is routed to the Sumo interpreter running in the backend. This interpreter checks the query, connects to Sumo using access id and access key and retrieves the data. The data is represented as a `Spark DataFrame <https://spark.apache.org/docs/2.1.0/sql-programming-guide.html>`_ and can be used as such through the name displayed in the DataFrame field. In this example this is ``myquery768``. 
+First thing is to instruct Zeppelin to use the Sumo interpreter by entering `%spark.sumo` in the first line of the paragraph. This annotation indicates that the paragraph is routed to the Sumo interpreter running in the backend. This interpreter checks the query, connects to Sumo using access id and access key and retrieves the data. The data is represented as a `Spark DataFrame <https://spark.apache.org/docs/2.1.0/sql-programming-guide.html>`_ and can be used as such through the name displayed in the DataFrame field. In this example this is ``myquery768``. 
 
 .. note:: In fact it uses a customized version of the `sumo-java-client <https://github.com/SumoLogic/sumo-java-client>`_, therefore it has the same restrictions.
 
@@ -131,7 +140,7 @@ Another common operation on logs is string matching. Spark SQL's `SELECT <https:
 Clustering Example
 ------------------
 
-This example is about leveraing the python interpreter to perform a basic clustering operation on metrics data. As usual, `%spark.sumo` leads in a Sumo query. This time a metrics query is submitted. Metrics queries can be specified by selecting _Metrics_ via the drop down menu.
+This example is about leveraging the python interpreter to perform a basic clustering operation on metrics data. As usual, `%spark.sumo` leads in a Sumo query. This time a metrics query is submitted. Metrics queries can be specified by selecting _Metrics_ via the drop down menu.
 
 .. image:: images/9_metrics.png
     :width: 600px
@@ -174,8 +183,33 @@ And there we are, yes there are a couple of clusters in the that particular metr
     :alt: Show clustered result
 
 
+Jupyter Data Science Workflow
+==============================
+Clustering Example
+------------------
+We can see the same clustering example shown above as executed on the Jupyter notebook.
+
+We initialize a SumoLab object to get a simple interface to enter the query and time range parameters. Once added we can `Run` the query.
+
+.. image:: images/10_jupyter_metrics.png
+    :width: 600px
+    :align: center
+    :alt: Query for metrics on Jupyter notebook
+
+Once we have the data-frame we can follow the same procedure explained above to perform clustering of the data.
+
+.. image:: images/11_jupyter_plot.png
+    :width: 600px
+    :align: center
+    :alt: Plot the data-frame using matplotlib
 
 
+.. image:: images/12_jupyter_scatter.png
+    :width: 600px
+    :align: center
+    :alt: Visualization of different steps of the analysis
+
+    
 Troubleshooting
 ===============
 
