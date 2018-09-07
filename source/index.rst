@@ -103,8 +103,8 @@ On the Spark configuration page click the ``edit`` button and then enter access 
     Enter the access id/key pair and save
 
 
-Zeppelin Data Science Workflow
-==============================
+Data Science Workflow
+=====================
 
 The foundational data structure for Sumo notebooks is a data frame. A typical data science workflow manipulates data frames in many ways. For instance, data frames might be transformed for feature generation and statistical analysis, or joined with another dataset for enrichment. Therefore, a Sumo notebook returns query results in a Spark dataframe. This enables users to tap into Spark's development universe, or -- using the ``toPandas`` method -- switch over to a python-native approach for data analytics.
 
@@ -187,10 +187,9 @@ And there we are, yes there are a couple of clusters in the that particular metr
     :alt: Show clustered result
 
 
-Jupyter Data Science Workflow
-==============================
-Clustering Example
-------------------
+Clustering Example using Jupyter
+--------------------------------
+
 We can see the same clustering example shown above as executed on the Jupyter notebook.
 
 We initialize a SumoLab object to get a simple interface to enter the query and time range parameters. Once added we can `Run` the query.
