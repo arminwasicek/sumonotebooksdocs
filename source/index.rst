@@ -35,17 +35,21 @@ Running the Sumo Notebooks Docker Container
 
 3. Open the Zeppelin UI and find some sample notebooks under the 'Notebook' drop down menu or see the 'Demo.ipynb' on opening Jupyter on the browser.
 
-Zeppelin
-^^^^^^^^^
-``http://localhost:8088``
 
-Jupyter
-^^^^^^^
-``http://localhost:4000``
-
-
++-------------------------+--------+-------------------------+
+| Application             | Ports  | Link
++=========================+========+=========================+
+| Zeppelin                | 8088   | http://localhost:8088   |
++-------------------------+--------+-------------------------+
+| Spark Web UI            | 4040   | http://localhost:4040   |
++-------------------------+--------+-------------------------+
+| Tensorboard             | XXXX   | http://localhost:XXXX   |
++-------------------------+--------+-------------------------+
+| Jupyter                 | 4000   | http://localhost:4000   |
++-------------------------+--------+-------------------------+
 
 This is it, happy coding!
+
 
 Docker Container Environment Variables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
