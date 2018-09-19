@@ -31,7 +31,7 @@ Running the Sumo Notebooks Docker Container
 
 2. Start the container. API access id and access key have to be submitted via command line to work with the Jupyter notebook but can be either submitted via the command line or entered via the Spark interpreter configuration menu in Zeppelin.
 
-``docker run -d -it -p 4000:8888 -e SUMO_ACCESS_ID='XXX' -e SUMO_ACCESS_KEY='XXX' -e SUMO_ENDPOINT='XXX' sumologic/notebooks:latest``
+``docker run -d -it -p 8088:8080 -e SUMO_ACCESS_ID='XXX' -e SUMO_ACCESS_KEY='XXX' -e SUMO_ENDPOINT='XXX' sumologic/notebooks:latest``
 
 3. Open the Zeppelin UI and find some sample notebooks under the 'Notebook' drop down menu or see the 'Demo.ipynb' on opening Jupyter on the browser.
 
